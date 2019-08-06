@@ -10,10 +10,8 @@ m = t / 2;
 module cell () {
   //translate([0, 0, ad - m * 3])
   difference () {
-    color("blue", 0.5)
-      cube ([ad + t, ad + t, ad + t], true);
-    color("red", 0.5)
-      cube ([ad, ad, ad * 2], true);
+    color("blue", 0.5) cube ([ad + t, ad + t, ad + t], true);
+    color("red", 0.5) cube ([ad, ad, ad * 2], true);
   }
 }
 
@@ -27,7 +25,18 @@ module pyramid () {
   }
 }
 
-//sphere(d=ad, true, $fn=100);
-cell();
-translate([0, 0, - ad + t + m])
-pyramid();
+module puncher() {
+  cell();
+  translate([0, 0, - ad + t + m]) pyramid();
+}
+
+module rosario_ball() {
+  color("OrangeRed", .5)
+  difference() {
+    sphere(d=ad, true, $fn=50);
+    cylinder(r=0.5, h=10, center=true, $fn=50);
+  }
+}
+
+%rosario_ball();
+puncher();
