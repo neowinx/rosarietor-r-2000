@@ -40,6 +40,18 @@ module shaft() {
   }
 }
 
+module stepper_support() {
+  module screw() {
+    translate([-12.6,-17.5,-8]) rotate([90]) cylinder(8,2,2,true,$fn=32);
+  }
+  
+  difference() {
+    translate([-16.25,-17.5,-10.5]) cube([42,2,5]);
+    screw();
+    translate([35,0,0]) screw();
+  }
+}
+
 /* MAIN DESIGN */
 
 //shaft1
@@ -55,9 +67,19 @@ translate([-2,dia + 1.9]) rotate([0,0,-90]) {
   %stepper();
 }
 
+stepper_support();
+translate([0,10]) rotate([0,0,-90]) stepper_support();
+//stepper supports union
+translate([-17.5,-17.5,-10.5]) cube([2,2,5]);
+
+/* REFERENCE OBJECTS */
+// All of this components are showed only for reference not included in the model
+
 //led
 rotate([0,-180]) translate([0,0,-15]) %led();
 
+//photoresistor
 translate([-7.5,5,-35]) rotate([90]) %ky_18();
 
+//ball
 %rosario_ball();
