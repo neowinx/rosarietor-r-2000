@@ -83,3 +83,6 @@ translate([-7.5,5,-35]) rotate([90]) %ky_18();
 
 //ball
 %rosario_ball();
+
+translate([-17.5,1.75,-35]) cube([2,4,25]);
+color("red") translate([-15.5,1.75,-35]) cube([25,4,2]);
