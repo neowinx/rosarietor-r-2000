@@ -65,10 +65,10 @@ module plate() {
   difference() {
     translate([0,0,-3.5]){
       cylinder(2,5,5,$fn=50);
-      color("magenta",.5) translate([0,0,-3]) {
+      color("magenta",.5) translate([0,0,-5]) {
         difference() {
-          cylinder(3,5,5,$fn=50);
-          cylinder(3,4,4,$fn=50);
+          cylinder(5,5,5,$fn=50);
+          cylinder(5,4,4,$fn=50);
         }
       } 
     } 
