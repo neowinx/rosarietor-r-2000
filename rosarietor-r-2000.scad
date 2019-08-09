@@ -1,6 +1,7 @@
-use <StepMotor_28BYJ.scad>;
-use <LED_Module.scad>;
-use <Photosensor_KY_018.scad>;
+use <modules/StepMotor_28BYJ.scad>;
+use <modules/LED_Module.scad>;
+use <modules/Photosensor_KY_018.scad>;
+use <rosarietor-r-2000-shaft.scad>;
 
 // Ball diameter (mm)
 dia = 8;
@@ -29,17 +30,6 @@ module stepper() {
   translate([4.90,-25,-8]) rotate([90,270,0]) StepMotor28BYJ();
 }
 
-module shaft() {
-  difference() {
-    union () {
-      //TODO: Parametrize this .9 magic number
-      translate([dia/2+.9,5,0]) rotate([90,0,0]) cylinder(10,1.25,1.25,$fn=25);
-      translate([dia/2+.9,-4.5,0]) rotate([90,0,0]) cylinder(7,3,4,$fn=25);
-    }
-    color("Orange",.5) translate([2.5,-12,-1.70]) cube([5,3.25,3.25]);
-  }
-}
-
 module stepper_support() {
   module screw() {
     translate([-12.6,-17.5,-8]) rotate([90]) cylinder(8,2,2,true,$fn=32);
@@ -53,12 +43,12 @@ module stepper_support() {
 }
 
 module photoresistor_support() {
-  translate([-17.5,1.5,-37]) cube([2,5,27]);
+  translate([-17.5,-1.5,-37]) cube([2,5,27]);
   difference() {
-    color("red",.5) translate([-15.5,1.5,-37]) cube([25,5,4]);
-    translate([-7.5,5,-35]) rotate([90]) ky_18();
-    translate([-3.5,4.75,-35]) cube([7.25,2,2]);
-    color("blue",.5) translate([-3,1,-35]) cube([6,2,2]);
+    color("red",.5) translate([-15.5,-1.5,-37]) cube([25,5,4]);
+    translate([-7.5,3,-35]) rotate([90]) ky_18();
+    translate([-3.5,2.75,-35]) cube([7.25,2,2]);
+    color("blue",.5) translate([-3,-1,-35]) cube([6,2,2]);
   }
 }
 
@@ -86,14 +76,14 @@ module plate_arm() {
 
 //shaft1
 translate([0,-2]) {
-  shaft();
+  shaft(dia);
   %stepper();
 }
 
 //shaft2
 //TODO: Parametrize this 1.9 magic number
 translate([-2,dia + 1.9]) rotate([0,0,-90]) { 
-  color("cyan",.5) shaft();
+  color("cyan",.5) shaft(dia);
   %stepper();
 }
 
@@ -115,7 +105,7 @@ rotate([0,0,-90]) plate_arm();
 rotate([0,-180]) translate([0,0,-15]) %led();
 
 //photoresistor
-translate([-7.5,5,-35]) rotate([90]) %ky_18();
+translate([-7.5,3,-35]) rotate([90]) %ky_18();
 
 //ball
 %rosario_ball();
