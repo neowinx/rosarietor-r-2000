@@ -36,7 +36,7 @@ module shaft() {
       translate([dia/2+.9,5,0]) rotate([90,0,0]) cylinder(10,1.25,1.25,$fn=25);
       translate([dia/2+.9,-4.5,0]) rotate([90,0,0]) cylinder(7,3,4,$fn=25);
     }
-    scale([1.05,1.05,1.05]) stepper();
+    color("Orange",.5) translate([2.5,-12,-1.70]) cube([5,3.25,3.25]);
   }
 }
 
@@ -53,22 +53,24 @@ module stepper_support() {
 }
 
 module photoresistor_support() {
-  translate([-17.5,1.75,-35]) cube([2,4,25]);
+  translate([-17.5,1.5,-37]) cube([2,5,27]);
   difference() {
-    color("red",.5) translate([-15.5,1.75,-35]) cube([25,4,2]);
+    color("red",.5) translate([-15.5,1.5,-37]) cube([25,5,4]);
     translate([-7.5,5,-35]) rotate([90]) ky_18();
-    translate([-3,1.75,-35]) cube([6,2,2]);
+    translate([-3.5,4.75,-35]) cube([7.25,2,2]);
+    color("blue",.5) translate([-3,1,-35]) cube([6,2,2]);
   }
 }
 
 module plate() {
+  translate([0,0,-1])
   difference() {
-    translate([0,0,-3.5]){
-      cylinder(2,5,5,$fn=50);
+    translate([0,0,-2.5]){
+      cylinder(2,6,6,$fn=50);
       color("magenta",.5) translate([0,0,-7]) {
         difference() {
+          cylinder(7,6,6,$fn=50);
           cylinder(7,5,5,$fn=50);
-          cylinder(7,4,4,$fn=50);
         }
       } 
     } 
@@ -77,7 +79,7 @@ module plate() {
 }
 
 module plate_arm() {
-  translate([-1,-16,-9]) rotate([24,0,0])cube([2,14,2]);
+  translate([-1,-16,-9]) rotate([24,0,0])cube([2,13,2]);
 }
 
 /* MAIN DESIGN */
@@ -85,14 +87,14 @@ module plate_arm() {
 //shaft1
 translate([0,-2]) {
   shaft();
-  //%stepper();
+  %stepper();
 }
 
 //shaft2
 //TODO: Parametrize this 1.9 magic number
 translate([-2,dia + 1.9]) rotate([0,0,-90]) { 
   color("cyan",.5) shaft();
-  //%stepper();
+  %stepper();
 }
 
 stepper_support();
