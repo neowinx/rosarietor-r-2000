@@ -27,7 +27,7 @@ module rosario_ball() {
 }
 
 module stepper() {
-  translate([4.90,-25,-8]) rotate([90,270,0]) StepMotor28BYJ();
+  translate([6.90,-25,-8]) rotate([90,270,0]) StepMotor28BYJ();
 }
 
 module stepper_support() {
@@ -36,7 +36,7 @@ module stepper_support() {
   }
   
   difference() {
-    translate([-16.25,-17.5,-10.5]) cube([42,2,5]);
+    translate([-18.25,-17.5,-10.5]) cube([44,2,5]);
     screw();
     translate([35,0,0]) screw();
   }
@@ -48,12 +48,12 @@ module photoresistor_support() {
     color("red",.5) translate([-15.5,-1.5,-37]) cube([25,5,4]);
     translate([-7.5,3,-35]) rotate([90]) ky_18();
     translate([-3.5,2.75,-35]) cube([7.25,2,2]);
-    color("blue",.5) translate([-3,-1,-35]) cube([6,2,2]);
+    color("blue",.5) translate([-4,-3,-35]) cube([8,4,2]);
   }
 }
 
 module plate() {
-  translate([0,0,-1])
+  translate([2,2,-1])
   difference() {
     translate([0,0,-2.5]){
       cylinder(2,6,6,$fn=50);
@@ -69,7 +69,7 @@ module plate() {
 }
 
 module plate_arm() {
-  translate([-1,-16,-9]) rotate([24,0,0])cube([2,13,2]);
+  translate([1,-16,-9]) rotate([24,0,0])cube([2,14,2]);
 }
 
 /* MAIN DESIGN */
@@ -82,21 +82,21 @@ translate([0,-2]) {
 
 //shaft2
 //TODO: Parametrize this 1.9 magic number
-translate([-2,dia + 1.9]) rotate([0,0,-90]) { 
+translate([-2,dia + 5.9]) rotate([0,0,-90]) { 
   color("cyan",.5) shaft(dia);
   %stepper();
 }
 
-stepper_support();
-translate([0,10]) rotate([0,0,-90]) stepper_support();
+color("Crimson") translate([2,0,0]) stepper_support();
+translate([0,12]) rotate([0,0,-90]) stepper_support();
 //stepper supports union
-translate([-17.5,-17.5,-10.5]) cube([2,2,5]);
+translate([-17.5,-17.5,-10.5]) cube([2,4,5]);
 
 photoresistor_support();
 
 plate();
 plate_arm();
-rotate([0,0,-90]) plate_arm();
+translate([0,4,0]) rotate([0,0,-90]) plate_arm();
 
 /* REFERENCE OBJECTS */
 // All of this components are showed only for reference not included in the model
@@ -108,5 +108,5 @@ rotate([0,-180]) translate([0,0,-15]) %led();
 translate([-7.5,3,-35]) rotate([90]) %ky_18();
 
 //ball
-%rosario_ball();
+translate([2,2,0]) %rosario_ball();
 

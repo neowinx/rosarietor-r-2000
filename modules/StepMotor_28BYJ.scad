@@ -1,8 +1,8 @@
 
-translate([0,-30,0])
-StepMotor28BYJ();
+// translate([0,-30,0])
+// StepMotor28BYJ();
 
-translate([0,30,0])
+// translate([0,30,0])
 StepMotor28BYJ();
 
 
