@@ -45,10 +45,13 @@ module stepper_support() {
 module photoresistor_support() {
   translate([-17.5,-1.5,-37]) cube([2,5,27]);
   difference() {
+    color("Purple",.5) translate([-9,-1.5,-37]) cube([3,5,24]);
+    translate([-7.5,3,-35]) rotate([90]) ky_18();
+  }
+  difference() {
     color("red",.5) translate([-15.5,-1.5,-37]) cube([25,5,4]);
     translate([-7.5,3,-35]) rotate([90]) ky_18();
-    translate([-3.5,2.75,-35]) cube([7.25,2,2]);
-    color("blue",.5) translate([-4,-3,-35]) cube([8,4,2]);
+    color("blue",.5) translate([-5,-3,-35]) cube([10,7,2]);
   }
 }
 
