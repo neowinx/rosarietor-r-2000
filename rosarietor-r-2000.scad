@@ -60,10 +60,10 @@ module plate() {
   difference() {
     translate([0,0,-2.5]){
       cylinder(2,6,6,$fn=50);
-      color("magenta",.5) translate([0,0,-7]) {
+      color("magenta",.5) translate([0,0,-10]) {
         difference() {
-          cylinder(7,6,6,$fn=50);
-          cylinder(7,5,5,$fn=50);
+          cylinder(10,6,6,$fn=50);
+          cylinder(10,5,5,$fn=50);
         }
       } 
     } 
@@ -73,6 +73,15 @@ module plate() {
 
 module plate_arm() {
   translate([1,-16,-9]) rotate([24,0,0])cube([2,14,2]);
+}
+
+module led_support() {
+  difference() {
+    translate([2,2,10]) cylinder(h=2,d1=7,d2=7, center=true);
+    translate([2,2,10]) cylinder(h=2,d1=5,d2=5, center=true);
+  }
+  translate([6.5,6.5,4]) cylinder(h=14,d1=2.5,d2=2.5, center=true);
+  translate([5,5,10]) rotate([0,0,45]) cube([4,2,2], center=true);
 }
 
 /* MAIN DESIGN */
@@ -101,14 +110,16 @@ plate();
 plate_arm();
 translate([0,4,0]) rotate([0,0,-90]) plate_arm();
 
+led_support();
+
 /* REFERENCE OBJECTS */
 // All of this components are showed only for reference not included in the model
 
 //led
-rotate([0,-180]) translate([0,0,-15]) %led();
+rotate([0,-180]) translate([-2,2,-15]) %led();
 
 //photoresistor
-translate([-7.5,3,-35]) rotate([90]) %ky_18();
+translate([-7.5,3,-37]) rotate([90]) %ky_18();
 
 //ball
 translate([2,2,0]) %rosario_ball();
