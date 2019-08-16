@@ -77,11 +77,11 @@ module plate_arm() {
 
 module led_support() {
   difference() {
-    translate([2,2,10]) cylinder(h=2,d1=7,d2=7, center=true);
-    translate([2,2,10]) cylinder(h=2,d1=5,d2=5, center=true);
+    translate([2,2,16]) cylinder(h=2,d1=8,d2=8, center=true);
+    translate([2,2,16]) cylinder(h=2,d1=5.75,d2=5.75, center=true);
   }
-  translate([6.5,6.5,4]) cylinder(h=14,d1=2.5,d2=2.5, center=true);
-  translate([5,5,10]) rotate([0,0,45]) cube([4,2,2], center=true);
+  translate([6.5,6.5,7]) cylinder(h=20,d1=2.5,d2=2.5, center=true);
+  translate([5,5,16]) rotate([0,0,45]) cube([3,2,2], center=true);
 }
 
 /* MAIN DESIGN */
